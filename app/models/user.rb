@@ -1,11 +1,15 @@
 class User < ActiveRecord::Base
+  attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
-  attr_accessible :email, :name, :password, :password_confirmation
+  before_save { |user| user.email = email.downcase }
 
-  validates_uniqueness_of :email, :name
+  validates :name, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
 
-  before_create { generate_token(:auth_token) }
+  before_save { generate_token(:auth_token) }
 
   def generate_token(column)
     begin
