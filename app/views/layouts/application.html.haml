@@ -1,21 +1,48 @@
 !!! 5
-%html
+%html(lang="en")
   %head
-    %title ProbabilisticTipping
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "ProbabilisticTipping"
     = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+    %link(href="images/favicon.ico" rel="shortcut icon")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
+
   %body
-    .container
-      - if current_user
-        Logged in as #{current_user.name} #{current_user.email}
-        = link_to "Log Out", logout_path
-      - else
-        = link_to "Sign Up", signup_path
-        or
-        = link_to "Log In", login_path
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand(href="#") ProbabilisticTipping
+          .container.nav-collapse
+            %ul.nav.pull-right
+              - if current_user
+                %li #{current_user.name} &lt;#{current_user.email}&gt;
+                %li= link_to "Log Out", logout_path
+              - else
+                %li= link_to "Sign Up", signup_path
+                %li= link_to "Log In", login_path
 
-      - flash.each do |name, msg|
-        = content_tag :div, msg, id: "flash_#{name}"
+    .container-fluid
 
-      = yield
+      .row
+        .span12
+          - flash.each do |name, msg|
+            = content_tag :div, msg, id: "flash_#{name}"
+
+          = yield
+    
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

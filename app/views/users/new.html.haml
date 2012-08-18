@@ -1,20 +1,13 @@
-%hi Sign Up
+%h1 Sign Up
 
-= form_for @user do |f|
+= simple_form_for @user, html: { class: "form-horizontal" } do |f|
   - if @user.errors.any?
     - @user.errors.full_messages.each do |message|
       = message
 
-  = f.label :email
-  = f.text_field :email
+  = f.input :email
+  = f.input :name
+  = f.input :password
+  = f.input :password_confirmation
 
-  = f.label :name
-  = f.text_field :name
-
-  = f.label :password
-  = f.password_field :password
-
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
-
-  = f.submit "Sign Up"
+  = f.button :submit
