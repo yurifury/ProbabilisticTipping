@@ -34,15 +34,18 @@ body {
 
 html, body {
   background-color: #3f5765;
-  height: 100%;
+  margin: 0;
+  height: 400px;
 
   > .container {
     background-color: #efefef;
-    height: auto !important; /* ie6 ignores !important, so this will be overridden below */
-    min-height: 100%; /* ie6 ignores min-height completely */
+    // height: auto !important; /* ie6 ignores !important, so this will be overridden below */
+    // min-height: 100%; /* ie6 ignores min-height completely */
     height: 100%;
+    min-height: 100%;
     .box-shadow(0 0 5px rgba(0, 0, 0, 0.4));
-    padding: 10px;
+    .border-radius(0 0 10px 10px);
+    padding: 0 10px 0 10px;
   }
 }
 
@@ -61,4 +64,10 @@ html, body {
       color: #bdd4de;
     }
   }
+}
+
+.footer {
+  margin-top: 45px;
+  padding: 35px 0 36px;
+  border-top: 1px solid #bdd4de;
 }
