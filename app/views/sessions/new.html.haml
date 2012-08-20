@@ -1,9 +1,11 @@
-%h1 Log In
+.row
+  .span6.offset3
+    %h1 Log In
 
-= simple_form_for :session, url: sessions_path, html: { class: "form-horizontal" } do |f|
+    = simple_form_for :session, url: sessions_path, html: { class: "form-horizontal" } do |f|
 
-  = f.input :email
-  = f.input :password
-  = f.input :remember_me, as: :boolean
+      = f.input :email
+      = f.input :password
+      = f.input :remember_me, as: :boolean
 
-  = f.button :submit
+      = f.button :submit, "Log in"

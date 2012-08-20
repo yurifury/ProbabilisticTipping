@@ -32,3 +32,33 @@ body {
 // Example:
 // @linkColor: #ff0000;
 
+html, body {
+  background-color: #3f5765;
+  height: 100%;
+
+  > .container {
+    background-color: #efefef;
+    height: auto !important; /* ie6 ignores !important, so this will be overridden below */
+    min-height: 100%; /* ie6 ignores min-height completely */
+    height: 100%;
+    .box-shadow(0 0 5px rgba(0, 0, 0, 0.4));
+    padding: 10px;
+  }
+}
+
+.navbar .navbar-inner {
+  background-color: #ff530d;
+  background-image: none;
+  .brand {
+    color: #efefef;
+    line-height: 40px;
+  }
+
+  .nav > li > a {
+    color: #efefef;
+    line-height: 40px;
+    &:hover {
+      color: #bdd4de;
+    }
+  }
+}
