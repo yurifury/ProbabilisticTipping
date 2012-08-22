@@ -21,7 +21,8 @@ group :assets do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 1.1'
+  gem 'rspec-rails', '~> 2.10'
 end
 
 gem 'jquery-rails'
