@@ -5,7 +5,7 @@ gem 'rails', '~> 3.2.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -24,6 +24,7 @@ group :test do
   gem 'capybara', '~> 1.1'
   gem 'rspec-rails', '~> 2.10'
   gem 'spork', '~> 0.9'
+  gem 'factory_girl_rails', '~> 1.4'
 end
 
 gem 'jquery-rails'
