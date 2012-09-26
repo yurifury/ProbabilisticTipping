@@ -17,14 +17,15 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 group :test do
-  gem 'capybara', '~> 1.1'
-  gem 'rspec-rails', '~> 2.10'
-  gem 'spork', '~> 0.9'
-  gem 'factory_girl_rails', '~> 1.4'
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'spork'
+  gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'
