@@ -15,5 +15,14 @@ describe "Authentication" do
       it { should have_selector('h1', text: "Log In") }
       it { should have_selector('.alert-error') }
     end
+
+    describe "with valid information" do
+      before do
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button login
+      end
+      it { should have_selector('a', text: "Log Out") }
+    end
   end
 end
