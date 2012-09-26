@@ -23,6 +23,7 @@ describe "Authentication" do
         click_button login
       end
       it { should have_selector('a', text: "Log Out") }
+      it { should have_selector('a', text: user.email) }
     end
   end
 end
