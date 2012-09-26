@@ -4,7 +4,7 @@ module ApplicationHelper
     case name
     when :notice
       "alert-success"
-    when :error
+    when :alert
       "alert-error"
     else
       "alert-info"
