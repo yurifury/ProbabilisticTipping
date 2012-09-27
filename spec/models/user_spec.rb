@@ -25,4 +25,18 @@ describe User do
     before { @user.email = " " }
     it { should_not be_valid }
   end
+
+  describe "competition association" do
+    before { @user.save }
+    let!(:competition) { FactoryGirl.create(:competition, user: @user) }
+
+    it "should destroy associated competitions on user deletion" do
+      competitions = @user.competitions
+      @user.destroy
+      competitions.each do |comp|
+        Competition.find_by_id(comp.id).should be_nil
+      end
+    end
+
+  end
 end
