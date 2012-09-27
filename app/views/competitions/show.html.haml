@@ -3,5 +3,7 @@
     .page-header
       %h1
         = @competition.name
-        %small= "by #{@competition.user.name}"
+        %small by #{@competition.user.name}
+    - if @competition.finished?
+      .alert.alert-info This competition has finished!
 

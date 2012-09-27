@@ -10,10 +10,6 @@
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "application"
     = stylesheet_link_tag "application", :media => "all"
-    %link(href="images/favicon.ico" rel="shortcut icon")
-    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon")
-    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
-    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
 
   %body
     .navbar.navbar-fixed-top
@@ -26,9 +22,10 @@
           %a.brand(href="#") Probabilistic Tipping
           .container.nav-collapse
             %ul.nav.pull-right
+              %li= link_to "Competitions", competitions_path
               - if current_user
                 %li
-                  %a{href: "#"} #{current_user.name} &lt;#{current_user.email}&gt;
+                  %a{href: "#"} Logged in as #{current_user.name} &lt;#{current_user.email}&gt;
                 %li= link_to "Log Out", logout_path
               - else
                 %li= link_to "Sign Up", signup_path

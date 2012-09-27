@@ -9,9 +9,11 @@ describe Competition do
   it { should respond_to(:name) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:finished) }
   its(:user) { should == user }
 
   it { should be_valid }
+  it { should_not be_finished }
 
   describe "accessible attributes" do
     it "should not allow access to user_id" do
