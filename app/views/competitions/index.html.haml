@@ -1,0 +1,8 @@
+.row
+  .span12
+    .page-header
+      %h1 All Competitions
+
+    %ul
+      - for competition in @competitions
+        %li= link_to competition.name, competition

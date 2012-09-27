@@ -5,6 +5,7 @@ ProbabilisticTipping::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :competitions
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
