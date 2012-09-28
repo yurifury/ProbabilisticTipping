@@ -4,7 +4,7 @@ describe Participation do
   let(:competition) { FactoryGirl.create(:competition) }
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:participation) { user.participation.build(competition_id: user.id) }
+  let(:participation) { user.participations.build(competition_id: user.id) }
 
   subject { participation }
 

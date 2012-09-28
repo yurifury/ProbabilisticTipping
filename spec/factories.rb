@@ -8,6 +8,6 @@ FactoryGirl.define do
 
   factory :competition do
     name "Starcraft Competition"
-    user
+    association :owner, factory: :user
   end
 end

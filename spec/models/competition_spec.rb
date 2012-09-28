@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe Competition do
   let(:user) { FactoryGirl.create(:user) }
-  let(:competition) { user.competitions.build(name: "Starcraft Comp #1") }
+  let(:competition) { user.owned_competitions.build(name: "Starcraft Comp #1") }
 
   subject { competition }
 
   it { should respond_to(:name) }
   it { should respond_to(:user_id) }
-  it { should respond_to(:user) }
+  it { should respond_to(:owner) }
   it { should respond_to(:finished) }
-  its(:user) { should == user }
+  its(:owner) { should == user }
 
   it { should be_valid }
   it { should_not be_finished }

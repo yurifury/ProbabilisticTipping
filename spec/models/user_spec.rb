@@ -10,7 +10,7 @@ describe User do
   it { should respond_to(:email) }
 
   it { should respond_to(:authenticate) }
-  it { should respond_to(:competitions) }
+  it { should respond_to(:owned_competitions) }
 
   it { should be_valid }
 
@@ -26,10 +26,10 @@ describe User do
 
   describe "competition creation association" do
     before { user.save }
-    let!(:competition) { FactoryGirl.create(:competition, user: user) }
+    let!(:competition) { FactoryGirl.create(:competition, owner: user) }
 
     it "should destroy associated competitions on user deletion" do
-      competitions = user.competitions
+      competitions = user.owned_competitions
       user.destroy
       competitions.each do |comp|
         Competition.find_by_id(comp.id).should be_nil
