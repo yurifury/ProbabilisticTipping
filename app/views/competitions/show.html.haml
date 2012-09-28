@@ -3,7 +3,11 @@
     .page-header
       %h1
         = @competition.name
-        %small by #{@competition.user.name}
+        %small Owned by #{@competition.owner.name}
     - if @competition.finished?
       .alert.alert-info This competition has finished!
 
+    %h2 Participants
+    %ul
+      - for user in @competition.participants
+        %li= link_to user.name, user

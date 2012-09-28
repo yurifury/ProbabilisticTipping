@@ -19,13 +19,12 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") Probabilistic Tipping
+          = link_to "Probabilistic Tipping", root_url, class: "brand"
           .container.nav-collapse
             %ul.nav.pull-right
               %li= link_to "Competitions", competitions_path
               - if current_user
-                %li
-                  %a{href: "#"} Logged in as #{current_user.name} &lt;#{current_user.email}&gt;
+                %li= link_to "Logged in as #{current_user.name} at #{current_user.email}", current_user
                 %li= link_to "Log Out", logout_path
               - else
                 %li= link_to "Sign Up", signup_path

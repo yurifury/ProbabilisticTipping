@@ -2,11 +2,11 @@ class CompetitionsController < ApplicationController
   before_filter :authorize, only: [:new, :create]
 
   def new
-    @competition = current_user.competitions.new
+    @competition = current_user.owned_competitions.new
   end
 
   def create
-    @competition = current_user.competitions.new(params[:competition])
+    @competition = current_user.owned_competitions.new(params[:competition])
     if @competition.save
       redirect_to @competition, notice: "Competition created!"
     else

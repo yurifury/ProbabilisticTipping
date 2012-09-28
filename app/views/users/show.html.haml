@@ -1,0 +1,17 @@
+.row
+  .span12
+    .page-header
+      %h1
+        #{@user.name}
+        %small #{@user.email}
+
+    %h2 Owned competitions
+    %ul
+      - for comp in @user.owned_competitions
+        %li= link_to comp.name, comp
+
+    %h2 Participating competitions
+    %ul
+      - for comp in @user.participating_competitions
+        %li= link_to comp.name, comp
+
