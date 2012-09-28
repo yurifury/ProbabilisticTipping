@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Competition do
   let(:user) { FactoryGirl.create(:user) }
-  before { @competition = user.competitions.build(name: "Starcraft Comp #1") }
+  let(:competition) { user.competitions.build(name: "Starcraft Comp #1") }
 
-  subject { @competition }
+  subject { competition }
 
   it { should respond_to(:name) }
   it { should respond_to(:user_id) }

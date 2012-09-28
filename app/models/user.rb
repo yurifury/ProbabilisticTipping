@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
-  has_many :competitions, dependent: :destroy
+
+  has_many :owned_competitions, foreign_key: 'user_id', class_name: 'Competition', dependent: :destroy
+
+  has_many :participations
+  has_many :participating_competitions, through: :participations, source: :competition
 
   before_save { |user| user.email = email.downcase }
 
