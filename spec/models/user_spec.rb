@@ -35,5 +35,19 @@ describe User do
         Competition.find_by_id(comp.id).should be_nil
       end
     end
+
+    describe "automatically participating in the competition they own" do
+      it { should be_participating_in(competition) }
+    end
+
+    describe "another competition" do
+      let!(:new_competition) { FactoryGirl.create(:competition) }
+      it { should_not be_participating_in new_competition }
+
+      describe "participating" do
+        before { user.participate_in new_competition}
+        it { should be_participating_in new_competition }
+      end
+    end
   end
 end

@@ -7,4 +7,11 @@ class Competition < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :name, presence: true
+
+  after_create :participate_owner
+
+  private
+    def participate_owner
+      participants << owner
+    end
 end

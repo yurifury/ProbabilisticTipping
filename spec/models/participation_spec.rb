@@ -4,17 +4,9 @@ describe Participation do
   let(:competition) { FactoryGirl.create(:competition) }
   let(:user) { FactoryGirl.create(:user) }
 
-  let(:participation) { user.participations.build(competition_id: user.id) }
+  let(:participation) { user.participations.build(competition_id: competition.id) }
 
   subject { participation }
 
   it { should be_valid }
-
-  describe "accessible attributes" do
-    it "should not allow access to user_id" do
-      expect do
-        Participation.new(user_id: user.id)
-      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end    
-  end
 end

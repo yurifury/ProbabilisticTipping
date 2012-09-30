@@ -2,6 +2,7 @@
   .span12
     .page-header
       %h1 All Competitions
+    = link_to "Create competition", new_competition_path, class: "btn"
 
     %ul
       - for competition in @competitions

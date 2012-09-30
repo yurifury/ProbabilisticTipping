@@ -21,4 +21,12 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
+
+  def participate_in(competition)
+    participating_competitions << competition
+  end
+
+  def participating_in?(competition)
+    competition.in?(participating_competitions)
+  end
 end
