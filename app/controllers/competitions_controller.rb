@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create]
+  before_filter :authorize, only: [:new, :create, :participate, :unparticipate]
 
   def new
     @competition = current_user.owned_competitions.new
@@ -20,5 +20,17 @@ class CompetitionsController < ApplicationController
 
   def index
     @competitions = Competition.all
+  end
+
+  def participate_in
+    competition = Competition.find(params[:id])
+    current_user.participate_in competition
+    redirect_to competition
+  end
+
+  def unparticipate_in
+    competition = Competition.find(params[:id])
+    current_user.unparticipate_in competition
+    redirect_to competition
   end
 end

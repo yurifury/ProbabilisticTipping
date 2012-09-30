@@ -1,11 +1,22 @@
 ProbabilisticTipping::Application.routes.draw do
+  get "participation/create"
+
+  get "participation/destroy"
+
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
   resources :sessions
-  resources :competitions
+
+  resources :competitions do
+    member do
+      get 'participate_in'
+      get 'unparticipate_in'
+    end
+  end
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:
