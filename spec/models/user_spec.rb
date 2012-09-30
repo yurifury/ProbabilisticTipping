@@ -41,12 +41,24 @@ describe User do
     end
 
     describe "another competition" do
-      let!(:new_competition) { FactoryGirl.create(:competition) }
+      let(:new_competition) { FactoryGirl.create(:competition) }
+
       it { should_not be_participating_in new_competition }
+      it "should be a competition" do
+        new_competition.should be_a Competition
+      end
 
       describe "participating" do
         before { user.participate_in new_competition}
         it { should be_participating_in new_competition }
+
+        describe "unparticipating" do
+          before { user.unparticipate_in new_competition }
+          it { should_not be_participating_in new_competition }
+          it "competition should still exist" do
+            Competition.find(new_competition.id).should_not be_nil
+          end
+        end
       end
     end
   end

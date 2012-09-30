@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     participating_competitions << competition
   end
 
+  def unparticipate_in(competition)
+    participating_competitions.delete competition
+  end
+
   def participating_in?(competition)
     competition.in?(participating_competitions)
   end
