@@ -5,6 +5,8 @@ class Competition < ActiveRecord::Base
   has_many :participations
   has_many :participants, through: :participations, source: :user
 
+  has_many :rounds
+
   validates :user_id, presence: true
   validates :name, presence: true
 

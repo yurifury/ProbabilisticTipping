@@ -15,6 +15,7 @@ ProbabilisticTipping::Application.routes.draw do
       get 'participate_in'
       get 'unparticipate_in'
     end
+    resources :rounds
   end
 
   root :to => 'home#index'

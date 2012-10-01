@@ -26,6 +26,8 @@ group :test do
   gem 'spork'
   gem 'factory_girl_rails'
   gem 'factory_girl_rails'
+  gem 'timecop'
+  gem 'pry'
 end
 
 gem 'jquery-rails'
