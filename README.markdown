@@ -20,3 +20,16 @@ A Match is made up of 2 teams (or players).
 4) After this, Tippers can see how well they are doing in the overall Competition, and how well they did in each finished Round.
 
 5) Steps 1-4 repeat until the Manager marks the Competition as complete. Tippers can then see who won the Competition.
+
+
+Users own Competitions
+
+Users participate in Competitions through Participation
+
+Competitions have many Rounds
+
+Rounds have many Matches
+
+Matches and Users have many Tips
+
+Users have many Matches through Participations, Competitions, Rounds
