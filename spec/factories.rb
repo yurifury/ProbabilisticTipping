@@ -10,4 +10,9 @@ FactoryGirl.define do
     name "Starcraft Competition"
     association :owner, factory: :user
   end
+
+  factory :round do
+    closing_time Time.now + 30.minutes
+    competition
+  end
 end
