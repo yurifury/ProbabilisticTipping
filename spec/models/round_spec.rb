@@ -7,6 +7,10 @@ describe Round do
 
   subject { round }
 
+  it { should respond_to(:competition) }
+  it { should respond_to(:closing_time) }
+  it { should respond_to(:open?) }
+
   it { should be_open }
   its(:competition) { should == competition }
 

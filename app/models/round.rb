@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-  attr_accessible :closing_time, :competition_id
+  attr_accessible :closing_time
   belongs_to :competition
 
   def open?
