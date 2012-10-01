@@ -8,9 +8,9 @@
       .alert.alert-info This competition has finished!
 
     - if current_user.participating_in? @competition
-      = link_to "Participating", unparticipate_in_competition_path(@competition), class: "btn btn-success"
+      = link_to "Stop participating", unparticipate_in_competition_path(@competition), class: "btn"
     - else
-      = link_to "Not participating", participate_in_competition_path(@competition), class: "btn btn-error"
+      = link_to "Participate", participate_in_competition_path(@competition), class: "btn"
 
     %h2 Participants
     %ul
