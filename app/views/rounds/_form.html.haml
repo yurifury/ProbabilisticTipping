@@ -1,0 +1,9 @@
+= simple_form_for [@competition, @round] do |f|
+  = f.input :closing_time
+  %h3 Matches
+  #matches
+    = f.simple_fields_for :matches do |match|
+      = render 'match_fields', :f => match
+    .links
+      = link_to_add_association 'add match', f, :matches
+  = f.submit
