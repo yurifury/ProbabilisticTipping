@@ -1,0 +1,6 @@
+= simple_form_for @competition do |f|
+  = f.input :name, label: "Name of the competition", hint: "e.g. AFL 2013"
+  
+  = f.error :base
+
+  = f.button :submit, "Create Competition"

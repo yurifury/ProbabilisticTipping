@@ -6,6 +6,7 @@ class Competition < ActiveRecord::Base
   has_many :participants, through: :participations, source: :user
 
   has_many :rounds
+  accepts_nested_attributes_for :rounds, :reject_if => :all_blank, :allow_destroy => true
 
   validates :user_id, presence: true
   validates :name, presence: true

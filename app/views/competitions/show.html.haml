@@ -7,6 +7,9 @@
     - if @competition.finished?
       .alert.alert-info This competition has finished!
 
+    - if current_user?(@competition.owner)
+      = link_to "Edit competitition", edit_competition_path(@competition), class: "btn"
+
     - if current_user.participating_in? @competition
       = link_to "Stop participating", unparticipate_in_competition_path(@competition), class: "btn"
     - else

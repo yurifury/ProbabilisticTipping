@@ -34,6 +34,7 @@ gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 gem 'haml-rails'
 gem 'simple_form'
+gem 'cocoon'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

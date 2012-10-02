@@ -1,5 +1,7 @@
 class CompetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :participate, :unparticipate]
+  before_filter :authorize, only: [:new, :create, :participate_in, :unparticipate_in]
+  before_filter :find_competition, only: [:show, :edit, :update, :participate_in, :unparticipate_in]
+  before_filter :check_owner, only: [:edit, :update]
 
   def new
     @competition = current_user.owned_competitions.new
@@ -15,22 +17,41 @@ class CompetitionsController < ApplicationController
   end
 
   def show
-    @competition = Competition.find(params[:id])
   end
 
   def index
     @competitions = Competition.all
   end
 
+  def edit
+  end
+
+  def update
+    if @competition.update_attributes(params[:competition])
+      flash[:success] = "Competition updated"
+      redirect_to @competition
+    else
+      render 'edit'
+    end
+  end
+
   def participate_in
-    competition = Competition.find(params[:id])
-    current_user.participate_in competition
-    redirect_to competition
+    current_user.participate_in @competition
+    redirect_to @competition
   end
 
   def unparticipate_in
-    competition = Competition.find(params[:id])
-    current_user.unparticipate_in competition
-    redirect_to competition
+    current_user.unparticipate_in @competition
+    redirect_to @competition
   end
+
+  private
+    def find_competition
+      @competition = Competition.find(params[:id])
+    end
+
+    def check_owner
+      @competition = Competition.find(params[:id])
+      redirect_to root_path, alert: "You can't do that!" unless current_user?(@competition.owner)
+    end
 end
