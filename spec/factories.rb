@@ -15,4 +15,14 @@ FactoryGirl.define do
     closing_time Time.now + 30.minutes
     competition
   end
+
+  factory :match do
+    round
+    association :competitor_1_id, factory: :competitor
+    association :competitor_2_id, factory: :competitor
+  end
+
+  factory :competitor do
+    sequence(:name) {|n| "Competitor #{n}"}
+  end
 end

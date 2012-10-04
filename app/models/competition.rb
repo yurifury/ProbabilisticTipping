@@ -7,6 +7,8 @@ class Competition < ActiveRecord::Base
 
   has_many :rounds
 
+  has_many :competitors
+
   validates :user_id, presence: true
   validates :name, presence: true
 

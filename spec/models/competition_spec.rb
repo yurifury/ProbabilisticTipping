@@ -12,6 +12,7 @@ describe Competition do
   it { should respond_to(:finished) }
   it { should respond_to(:participants) }
   it { should respond_to(:rounds) }
+  it { should respond_to(:competitors) }
   its(:owner) { should == user }
 
   it { should be_valid }
