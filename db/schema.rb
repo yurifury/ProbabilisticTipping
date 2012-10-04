@@ -11,24 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004110443) do
+ActiveRecord::Schema.define(:version => 20121004132808) do
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "finished",   :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "finished",          :default => false
+    t.integer  "competitor_set_id"
   end
 
   add_index "competitions", ["finished"], :name => "index_competitions_on_finished"
   add_index "competitions", ["user_id", "created_at"], :name => "index_competitions_on_user_id_and_created_at"
 
+  create_table "competitor_sets", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "competitors", :force => true do |t|
     t.string   "name"
-    t.integer  "competition_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "competitor_set_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "matches", :force => true do |t|

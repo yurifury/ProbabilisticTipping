@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :participations
   has_many :participating_competitions, through: :participations, source: :competition
 
+  has_many :competitor_sets, foreign_key: 'owner_id', class_name: 'CompetitorSet'
+
   before_save { |user| user.email = email.downcase }
 
   validates :name, presence: true, uniqueness: true

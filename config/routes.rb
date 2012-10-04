@@ -17,6 +17,7 @@ ProbabilisticTipping::Application.routes.draw do
     end
     resources :rounds
   end
+  resources :competitor_sets
 
   root :to => 'home#index'
 

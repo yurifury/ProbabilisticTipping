@@ -7,6 +7,7 @@ describe Competitor do
 
   it { should respond_to(:name) }
   it { should respond_to(:matches) }
+  it { should respond_to(:competitor_set) }
   it { should be_valid }
   describe "with no name" do
     before { competitor.name = "" }

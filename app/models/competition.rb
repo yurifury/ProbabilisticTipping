@@ -1,5 +1,6 @@
 class Competition < ActiveRecord::Base
   attr_accessible :name
+  
   belongs_to :owner, foreign_key: 'user_id', class_name: 'User'
 
   has_many :participations
@@ -7,7 +8,8 @@ class Competition < ActiveRecord::Base
 
   has_many :rounds
 
-  has_many :competitors
+  belongs_to :competitor_set
+  has_many :competitors, through: :competitor_set
 
   validates :user_id, presence: true
   validates :name, presence: true
