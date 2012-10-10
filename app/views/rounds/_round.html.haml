@@ -1,6 +1,6 @@
 - if round.open?
   %li
-    Round closing #{round.closing_time.to_formatted_s(:short)}
+    Round closing #{round.closing_date.to_formatted_s(:short)}
     - if current_user.participating_in?(@competition)
       - if !current_user.has_tips_for?(round)
         %em

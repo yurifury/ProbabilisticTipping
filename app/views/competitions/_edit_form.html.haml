@@ -1,0 +1,9 @@
+= simple_form_for @competition do |f|
+  %label Competition Set
+  %span.uneditable-input= @competition.competitor_set.name
+
+  = f.input :name, label: "Name of the competition", hint: "e.g. AFL 2013"
+  
+  = f.error :base
+
+  = f.button :submit

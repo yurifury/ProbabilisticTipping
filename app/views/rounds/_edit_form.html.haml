@@ -1,5 +1,5 @@
-= simple_form_for [@competition, @round], :html => { :class => 'form-horizontal' } do |f|
-  = f.input :closing_date, as: :string, label: "Closing date for tips this round"
+= simple_form_for [@competition, @round] do |f|
+  Closing date: #{@round.closing_date.to_formatted_s(:short)}
   %h3 Matches
   #matches
     = f.simple_fields_for :matches do |match|
