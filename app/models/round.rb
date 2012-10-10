@@ -7,8 +7,12 @@ class Round < ActiveRecord::Base
   validate :round_closing_date_cannot_be_today_or_in_the_past
 
   def round_closing_date_cannot_be_today_or_in_the_past
-    if closing_date.today? or closing_date.past?
-      errors.add(:closing_date, "can't be today or in the past")
+    unless closing_date.nil? or closing_date.blank?
+      if closing_date.today? or closing_date.past?
+        errors.add(:closing_date, "can't be today or in the past")
+      end
+    else
+      errors.add(:closing_date, "can't be blank")
     end
   end
 

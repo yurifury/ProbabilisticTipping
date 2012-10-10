@@ -17,7 +17,7 @@ describe "Competition Pages" do
     describe "with valid information" do
       before do
         fill_in "Name", with: "Some Competition"
-        select competitor_set.name, from: "Competitor set"
+        select competitor_set.name, from: "Who will be playing"
         click_button "Create Competition"
       end
       it { should have_selector('.alert', text: "Competition created") }
