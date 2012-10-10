@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :round do
-    closing_time Time.now + 30.minutes
+    closing_date Time.now + 2.days
     competition
   end
 

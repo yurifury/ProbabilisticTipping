@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
-  before_filter :find_competition, only: [:new, :create, :show]
-  before_filter :check_owner, only: [:new, :create]
+  before_filter :find_competition, only: [:new, :create, :show, :edit]
+  before_filter :check_owner, only: [:new, :create, :edit]
 
   def new
     @round = @competition.rounds.build
@@ -17,6 +17,15 @@ class RoundsController < ApplicationController
 
   def show
     @round = @competition.rounds.find(params[:id])
+  end
+
+  def edit
+    @round = @competition.rounds.find(params[:id])
+    if @round.open?
+      render "edit"
+    else
+      render "results"
+    end
   end
 
   private

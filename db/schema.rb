@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010033539) do
+ActiveRecord::Schema.define(:version => 20121010115004) do
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
@@ -64,10 +64,11 @@ ActiveRecord::Schema.define(:version => 20121010033539) do
   end
 
   create_table "rounds", :force => true do |t|
-    t.datetime "closing_time"
+    t.date     "closing_date"
     t.integer  "competition_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "results_entered", :default => false
   end
 
   create_table "sessions", :force => true do |t|

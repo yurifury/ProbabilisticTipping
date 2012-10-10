@@ -18,6 +18,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier'
+  gem 'jquery-ui-rails'
 end
 
 group :test do

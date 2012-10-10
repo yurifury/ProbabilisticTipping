@@ -35,4 +35,7 @@ class User < ActiveRecord::Base
   def participating_in?(competition)
     competition.in?(participating_competitions)
   end
+
+  def has_tips_for?(round)
+  end
 end

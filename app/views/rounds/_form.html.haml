@@ -1,5 +1,5 @@
 = simple_form_for [@competition, @round] do |f|
-  = f.input :closing_time
+  = f.input :closing_date, as: :string, label: "Closing date for this rounds tips"
   %h3 Matches
   #matches
     = f.simple_fields_for :matches do |match|

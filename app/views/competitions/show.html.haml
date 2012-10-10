@@ -20,7 +20,7 @@
 
     %h2 Rounds
     %ul.unstyled
-      - for round in @competition.rounds.sort_by(&:closing_time).reverse
+      - for round in @competition.rounds.sort_by(&:closing_date).reverse
         = render round
 
 
