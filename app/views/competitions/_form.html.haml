@@ -1,5 +1,8 @@
 = simple_form_for @competition do |f|
   = f.input :name, label: "Name of the competition", hint: "e.g. AFL 2013"
+  = f.association :competitor_set, :collection => CompetitorSet.all, :prompt => "Choose a set of Competitors"
+  or 
+  = link_to "Create a new set of Competitors", new_competitor_set_path
   
   = f.error :base
 

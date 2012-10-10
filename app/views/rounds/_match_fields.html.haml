@@ -1,4 +1,5 @@
 .nested-fields
-  = f.input :player1
-  = f.input :player2
+  = f.association :competitor_1, :collection => @competition.competitors, :prompt => "Choose a competitor"
+  vs
+  = f.association :competitor_2, :collection => @competition.competitors, :prompt => "Choose a competitor"
   = link_to_remove_association "remove match", f

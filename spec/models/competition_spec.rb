@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Competition do
   let(:user) { FactoryGirl.create(:user) }
-  let(:competition) { user.owned_competitions.build(name: "Starcraft Comp #1") }
+  let(:competitor_set) { FactoryGirl.create(:competitor_set) }
+  let(:competition) { user.owned_competitions.build(name: "Starcraft Comp #1", competitor_set_id: competitor_set.id) }
 
   subject { competition }
 

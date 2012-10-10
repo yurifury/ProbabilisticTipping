@@ -9,6 +9,7 @@ FactoryGirl.define do
   factory :competition do
     name "Starcraft Competition"
     association :owner, factory: :user
+    competitor_set
   end
 
   factory :round do
@@ -18,11 +19,28 @@ FactoryGirl.define do
 
   factory :match do
     round
-    association :competitor_1_id, factory: :competitor
-    association :competitor_2_id, factory: :competitor
+    association :competitor_1, factory: :competitor_a
+    association :competitor_2, factory: :competitor_b
+  end
+
+  factory :competitor_set do
+    sequence(:name) {|n| "Competitor_set #{n}"}
+    association :owner, factory: :user
+    competitors {[FactoryGirl.create(:competitor_a), FactoryGirl.create(:competitor_b)]}
   end
 
   factory :competitor do
     sequence(:name) {|n| "Competitor #{n}"}
+
+    trait :a do
+      sequence(:name) {|n| "Competitor A #{n}"}
+    end
+
+    trait :b do
+      sequence(:name) {|n| "Competitor B #{n}"}
+    end
+
+    factory :competitor_a, traits: [:a]
+    factory :competitor_b, traits: [:b]
   end
 end

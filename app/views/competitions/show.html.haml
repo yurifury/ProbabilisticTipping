@@ -16,6 +16,14 @@
     - else
       = link_to "Participate", participate_in_competition_path(@competition), class: "btn"
 
+    = link_to "View Competitor Set", competitor_set_path(@competition.competitor_set)
+
+    %h2 Rounds
+    %ul.unstyled
+      - for round in @competition.rounds.sort_by(&:closing_time).reverse
+        = render round
+
+
     %h2 Participants
     %ul
       - for user in @competition.participants

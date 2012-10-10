@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "Competition Pages" do
   subject { page }
+  let!(:competitor_set) { FactoryGirl.create(:competitor_set) }
   before { valid_login(FactoryGirl.create(:user)) }
   describe "competition creation" do
     before { visit new_competition_path }
@@ -16,6 +17,7 @@ describe "Competition Pages" do
     describe "with valid information" do
       before do
         fill_in "Name", with: "Some Competition"
+        select competitor_set.name, from: "Competitor set"
         click_button "Create Competition"
       end
       it { should have_selector('.alert', text: "Competition created") }

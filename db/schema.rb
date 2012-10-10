@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004132808) do
+ActiveRecord::Schema.define(:version => 20121010033539) do
 
   create_table "competitions", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20121004132808) do
   end
 
   add_index "participations", ["user_id", "competition_id"], :name => "index_participations_on_user_id_and_competition_id"
+
+  create_table "results", :force => true do |t|
+    t.string   "winner"
+    t.integer  "match_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "rounds", :force => true do |t|
     t.datetime "closing_time"
