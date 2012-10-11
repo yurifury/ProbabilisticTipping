@@ -1,7 +1,9 @@
 %h3 Matches
 
-<%= form_tag do %>
-- for match in @round.matches
-  hello
-<% end %>
+= form_for [@competition, @round], :url => competition_round_results_path(@competition, @round) do |f|
+  - for match in @round.matches
+    = radio_button_tag("match_#{match.id}", "1")
+    = label_tag("match_#{match.id}_1", match.competitor_1.name)
+    = radio_button_tag("match_#{match.id}", "2")
+    = label_tag("match_#{match.id}_2", match.competitor_2.name)
 

@@ -4,7 +4,7 @@ class Round < ActiveRecord::Base
   has_many :matches
   accepts_nested_attributes_for :matches
 
-  validate :round_closing_date_cannot_be_today_or_in_the_past
+  validate :round_closing_date_cannot_be_today_or_in_the_past, on: :create
 
   def round_closing_date_cannot_be_today_or_in_the_past
     unless closing_date.nil? or closing_date.blank?

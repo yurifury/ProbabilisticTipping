@@ -1,4 +1,4 @@
-= simple_form_for [@competition, @round] do |f|
+= simple_form_for [@competition, @round], html: {class: "form-horizontal"} do |f|
   Closing date: #{@round.closing_date.to_formatted_s(:short)}
   %h3 Matches
   #matches

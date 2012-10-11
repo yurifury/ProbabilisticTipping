@@ -16,12 +16,12 @@ describe Round do
   it { should be_valid }
 
   describe "a closing date of today" do
-    before { round.closing_date = Date.current }
+    let(:round) { competition.rounds.build(closing_date: Date.current) }
     it { should_not be_valid }
   end
 
   describe "a closing date of yesterday" do
-    before { round.closing_date = Date.yesterday }
+    let(:round) { competition.rounds.build(closing_date: Date.yesterday) }
     it { should_not be_valid }
   end
 
