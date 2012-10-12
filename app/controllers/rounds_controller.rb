@@ -24,11 +24,22 @@ class RoundsController < ApplicationController
     if @round.open?
       render "edit"
     else
+      @matches = @round.matches
       render "results"
     end
   end
 
   def results
+    params[:match].each do |match_id, outcome|
+      match = Match.find(match_id)
+      result = match.build_result(winner: outcome)
+      result.save or render :text => result.inspect
+    end
+    @competition = Competition.find(params[:competition_id])
+    @round = @competition.rounds.find(params[:round_id])
+    @round.results_entered = true
+    @round.save
+    render "show"
   end
 
   def update

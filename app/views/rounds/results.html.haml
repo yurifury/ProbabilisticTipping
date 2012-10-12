@@ -1,6 +1,4 @@
-.row
-  .span12
-    .page-header
-      %h1 Results for round closing #{@round.closing_date.to_formatted_s(:short)} for #{@competition.name}
+.page-header
+  %h1 Results for round closing #{@round.closing_date.to_formatted_s(:short)} for #{@competition.name}
 
-    = render 'results'
+= render 'results'

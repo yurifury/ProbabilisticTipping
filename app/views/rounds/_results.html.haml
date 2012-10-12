@@ -1,9 +1,20 @@
 %h3 Matches
 
-= form_for [@competition, @round], :url => competition_round_results_path(@competition, @round) do |f|
-  - for match in @round.matches
-    = radio_button_tag("match_#{match.id}", "1")
-    = label_tag("match_#{match.id}_1", match.competitor_1.name)
-    = radio_button_tag("match_#{match.id}", "2")
-    = label_tag("match_#{match.id}_2", match.competitor_2.name)
+= form_for [@competition, @round], url: competition_round_results_path(@competition, @round), method: :post do |f|
+  - if @round.errors.any?
+    - @round.errors.full_messages.each do |msg|
+      = msg
+  - @round.matches.each_with_index do |match, index|
+    %fieldset
+      = label_tag("match_#{match.id}_1", class: "checkbox span2") do
+        = radio_button_tag("match[#{match.id}]", "1")
+        #{match.competitor_1.name}
 
+      = label_tag("match_#{match.id}_draw", class: "checkbox span2") do
+        = radio_button_tag("match[#{match.id}]", "draw")
+        draw
+
+      = label_tag("match_#{match.id}_2", class: "checkbox span2") do
+        = radio_button_tag("match[#{match.id}]", "2")
+        #{match.competitor_2.name}
+  = submit_tag("Save results", class: "btn")

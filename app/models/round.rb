@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-  attr_accessible :closing_date, :matches_attributes
+  attr_accessible :closing_date, :matches_attributes, :results_entered
   belongs_to :competition
   has_many :matches
   accepts_nested_attributes_for :matches

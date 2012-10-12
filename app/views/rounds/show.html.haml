@@ -5,4 +5,5 @@
 
     = debug @round
     = debug @round.matches
-
+    - @round.matches.each do |match|
+      = debug(match.result)
