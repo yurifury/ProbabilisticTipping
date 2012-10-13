@@ -40,7 +40,7 @@ class RoundsController < ApplicationController
       @round.results_entered = true
       @round.save
     end
-    render "show"
+    redirect_to "show"
   end
 
   def tips
@@ -66,7 +66,7 @@ class RoundsController < ApplicationController
         tip.save
       end
     end
-    render "show"
+    redirect_to [@competition, @round]
   end
 
   def enter_tips

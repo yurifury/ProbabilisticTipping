@@ -13,6 +13,10 @@
 
 - if @round.open?
   Closing #{@round.closing_date}
+  - if current_user.has_tips_for?(@round)
+    = link_to "Change your tips", competition_round_enter_tips_path(@competition, @round)
+  - else
+    = link_to "Enter your tips", competition_round_enter_tips_path(@competition, @round)
 - else
   Round closed #{@round.closing_date}
 
@@ -23,4 +27,9 @@
     | Winner:
     %b
       #{match.winner}
+  %br
+  Tips:
+  %ul
+    - match.tips.each do |tip|
+      = explain(tip)
 
