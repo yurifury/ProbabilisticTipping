@@ -32,4 +32,6 @@
   %ul
     - match.tips.each do |tip|
       = explain(tip)
+      - if @round.has_results?
+        = tip.calc_score
 

@@ -17,4 +17,18 @@ class Tip < ActiveRecord::Base
       errors.add(:probability, "can't be blank")
     end
   end
+
+  def calc_score
+    p = probability.to_f / 100
+    result = match.result.winner
+    if result == "1"
+      1 + Math.log2(1 - p)
+    elsif result == "2"
+      1 + Math.log2(p)
+    elsif probability == 50
+      0
+    elsif result == "draw"
+      1 + 1/2*Math.log2(p*(1-p))
+    end
+  end
 end
