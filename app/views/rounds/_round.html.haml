@@ -11,11 +11,12 @@
       - else
         | 
         = link_to "You've entered your tips. Change them?", competition_round_enter_tips_path(@competition, round)
+    - else
+      You're not participating in this competition yet.
+
     - if current_user?(@competition.owner)
       | 
       = link_to "Edit round", edit_competition_round_path(@competition, round)
-    - else
-      You're not participating in this competition yet.
 - else
   %li
   Round closed

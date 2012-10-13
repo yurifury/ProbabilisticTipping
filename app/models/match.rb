@@ -34,12 +34,12 @@ class Match < ActiveRecord::Base
     end
   end
 
-  def tip_of_user(current_user)
-    tips.find_by_user_id(current_user.id)
+  def tip_of_user(user)
+    tips.find_by_user_id(user.id)
   end
 
-  def probability_tip_of_user(current_user)
-    tip = tip_of_user(current_user)
+  def probability_tip_of_user(user)
+    tip = tip_of_user(user)
     tip.probability unless tip.nil?
   end
 

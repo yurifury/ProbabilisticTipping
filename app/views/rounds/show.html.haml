@@ -11,6 +11,14 @@
     - else
       = link_to "Put in results", edit_competition_round_path(@competition, @round), class: "btn"
 
+%h2 Tipping results
+%ul
+- if @round.results_entered
+  - @round.participant_scores.each do |result|
+    %li
+      #{result.participant.name}: #{result.score}
+
+
 - if @round.open?
   Closing #{@round.closing_date}
   - if current_user.has_tips_for?(@round)
@@ -31,7 +39,9 @@
   Tips:
   %ul
     - match.tips.each do |tip|
-      = explain(tip)
-      - if @round.has_results?
-        = tip.calc_score
+      %li
+        = explain(tip)
+        - if @round.has_results?
+          | result: 
+          = tip.calc_score.round(2)
 

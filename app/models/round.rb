@@ -31,4 +31,24 @@ class Round < ActiveRecord::Base
     end
     tipped
   end
+
+  def score_for(user)
+    score = 0
+    matches.each do |match|
+      tip = match.tip_of_user(user)
+      unless tip.nil?
+        score += tip.calc_score
+      end
+    end
+    score
+  end
+
+  Result = Struct.new(:participant, :score)
+  def participant_scores
+    scores = []
+    competition.participants.each do |participant|
+      scores << Result.new(participant, score_for(participant).round(2))
+    end
+    scores.sort {|x, y| y.score <=> x.score}
+  end
 end
