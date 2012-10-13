@@ -1,0 +1,9 @@
+= simple_form_for @cset do |f|
+  = f.input :name
+  %h3 Competitors
+  #competitors
+    = f.simple_fields_for :competitors do |competitor|
+      = render 'edit_competitor_fields', :f => competitor
+    .links
+      = link_to_add_association 'add competitor', f, :competitors
+  = f.submit class: "btn"

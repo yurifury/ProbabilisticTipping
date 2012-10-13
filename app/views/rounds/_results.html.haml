@@ -6,15 +6,18 @@
       = msg
   - @round.matches.each_with_index do |match, index|
     %fieldset
+      %legend Match #{index + 1}
       = label_tag("match_#{match.id}_1", class: "checkbox span2") do
-        = radio_button_tag("match[#{match.id}]", "1")
+        = radio_button_tag("match[#{match.id}]", "1", match.result.winner == "1")
         #{match.competitor_1.name}
 
       = label_tag("match_#{match.id}_draw", class: "checkbox span2") do
-        = radio_button_tag("match[#{match.id}]", "draw")
+        = radio_button_tag("match[#{match.id}]", "draw", match.result.winner == "draw")
         draw
 
       = label_tag("match_#{match.id}_2", class: "checkbox span2") do
-        = radio_button_tag("match[#{match.id}]", "2")
+        = radio_button_tag("match[#{match.id}]", "2", match.result.winner == "2")
         #{match.competitor_2.name}
   = submit_tag("Save results", class: "btn")
+
+

@@ -20,4 +20,17 @@ class Match < ActiveRecord::Base
       errors.add(:competitor_1, "A Competitor can't play themselves!")
     end
   end
+
+  def winner
+    unless result.nil?
+      case result.winner
+      when "1"
+        competitor_1.name
+      when "2"
+        competitor_2.name
+      else
+        result.winner
+      end
+    end
+  end
 end

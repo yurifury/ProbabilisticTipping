@@ -17,6 +17,7 @@ ProbabilisticTipping::Application.routes.draw do
     end
     resources :rounds do
       post 'results'
+      post 'close_early'
     end
   end
   resources :competitor_sets

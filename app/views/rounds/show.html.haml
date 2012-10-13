@@ -1,9 +1,28 @@
-.row
-  .span12
-    .page-header
-      %h1 Show a round
+.page-header
+  %h1 Round for #{@round.competition.name}
+  - if current_user?(@round.competition.owner) && @round.open?
+    = link_to "Close round early", competition_round_close_early_path(@competition, @round), :confirm => "Are you sure you want to close a round early? The closing date will be set to yesterday.", method: :post
 
-    = debug @round
-    = debug @round.matches
-    - @round.matches.each do |match|
-      = debug(match.result) unless match.result.nil?
+  - if current_user?(@round.competition.owner) && !@round.open?
+    - if @round.results_entered
+      = link_to "Edit results", edit_competition_round_path(@competition, @round), class: "btn"
+    - else
+      = link_to "Put in results", edit_competition_round_path(@competition, @round), class: "btn"
+
+- if @round.open?
+  Closing #{@round.closing_date}
+- else
+  Round closed #{@round.closing_date}
+
+.matches
+  Matches:
+  %ul
+    - @round.matches.each_with_index do |match, index|
+      %li
+        %legend Match #{index + 1}
+        #{match.competitor_1.name} vs. #{match.competitor_2.name}
+        - unless match.result.nil?
+          | Winner:
+          %b
+            #{match.winner}
+

@@ -1,13 +1,18 @@
 - if round.open?
   %li
     Round closing #{round.closing_date.to_formatted_s(:short)}
+    | 
+    = link_to "Show round details", competition_round_path(@competition, round)
     - if current_user.participating_in?(@competition)
       - if !current_user.has_tips_for?(round)
+        | 
         %em
           = link_to "Enter your tips!"
       - else
+        | 
         = link_to "You've entered your tips. Change them?"
     - if current_user?(@competition.owner)
+      | 
       = link_to "Edit round", edit_competition_round_path(@competition, round)
     - else
       You're not participating in this competition yet.
@@ -15,7 +20,9 @@
   %li
   Round closed
   - if round.has_results?
+    | 
     = link_to "Show results", round_results_path(round)
   - elsif !round.has_results? && current_user?(@competition.owner)
+    | 
     %em
       =link_to "Put in results!", edit_competition_round_path(@competition, round)

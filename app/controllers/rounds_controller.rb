@@ -44,6 +44,14 @@ class RoundsController < ApplicationController
     render "show"
   end
 
+  def close_early
+    @competition = Competition.find(params[:competition_id])
+    @round = @competition.rounds.find(params[:round_id])
+    @round.closing_date = Date.yesterday
+    @round.save
+    redirect_to [@competition, @round], notice: "Round closed early."
+  end
+
   def update
     @round = @competition.rounds.find(params[:id])
     if @round.open?

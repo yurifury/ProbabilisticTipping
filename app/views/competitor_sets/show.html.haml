@@ -1,8 +1,13 @@
-.row
-  .span12
-    .page-header
-      %h1 Competitor Set
+.page-header
+  %h1
+    Competitor Set: #{@cset.name}
+    %small Created by #{@cset.owner.name}
 
-    = debug @cset
-    = debug @cset.competitors
+  - if current_user?(@cset.owner)
+    = link_to "Edit Competitor Set", edit_competitor_set_path(@cset), class: "btn"
+
+
+%ul
+  - @cset.competitors.each do |competitor|
+    %li= competitor.name
 
