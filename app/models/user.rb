@@ -40,5 +40,6 @@ class User < ActiveRecord::Base
   end
 
   def has_tips_for?(round)
+    round.tipped?(self)
   end
 end

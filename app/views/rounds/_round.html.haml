@@ -7,10 +7,10 @@
       - if !current_user.has_tips_for?(round)
         | 
         %em
-          = link_to "Enter your tips!"
+          = link_to "Enter your tips!", competition_round_enter_tips_path(@competition, round)
       - else
         | 
-        = link_to "You've entered your tips. Change them?"
+        = link_to "You've entered your tips. Change them?", competition_round_enter_tips_path(@competition, round)
     - if current_user?(@competition.owner)
       | 
       = link_to "Edit round", edit_competition_round_path(@competition, round)
@@ -21,7 +21,7 @@
   Round closed
   - if round.has_results?
     | 
-    = link_to "Show results", round_results_path(round)
+    = link_to "Show results", competition_round_path(@competition, round)
   - elsif !round.has_results? && current_user?(@competition.owner)
     | 
     %em

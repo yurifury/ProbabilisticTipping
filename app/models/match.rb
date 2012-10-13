@@ -33,4 +33,25 @@ class Match < ActiveRecord::Base
       end
     end
   end
+
+  def tip_of_user(current_user)
+    tips.find_by_user_id(current_user.id)
+  end
+
+  def probability_tip_of_user(current_user)
+    tip = tip_of_user(current_user)
+    tip.probability unless tip.nil?
+  end
+
+  def result_value(string)
+    return nil if result.nil?
+    case string
+    when "1"
+      result.winner == "1"
+    when "2"
+      result.winner == "2"
+    when "draw"
+      result.winner == "draw"
+    end
+  end
 end

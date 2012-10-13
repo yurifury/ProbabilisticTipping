@@ -18,6 +18,8 @@ ProbabilisticTipping::Application.routes.draw do
     resources :rounds do
       post 'results'
       post 'close_early'
+      post 'tips'
+      get 'enter_tips'
     end
   end
   resources :competitor_sets

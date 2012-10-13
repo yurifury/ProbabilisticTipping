@@ -23,4 +23,12 @@ class Round < ActiveRecord::Base
   def has_results?
     results_entered
   end
+
+  def tipped?(user)
+    tipped = false
+    matches.each do |match|
+      tipped = true unless match.tip_of_user(user).nil?
+    end
+    tipped
+  end
 end

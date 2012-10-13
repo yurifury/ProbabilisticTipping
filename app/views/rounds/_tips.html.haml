@@ -1,0 +1,27 @@
+= link_to "Back to #{@competition.name}", competition_path(@competition)
+
+%h3 Matches
+
+= form_for [@competition, @round], url: competition_round_tips_path(@competition, @round), method: :post do |f|
+  - if @round.errors.any?
+    - @round.errors.full_messages.each do |msg|
+      = msg
+
+
+
+  - @round.matches.each_with_index do |match, index|
+    %fieldset
+      %legend Match #{index + 1}
+      .span2.competitor
+        #{match.competitor_1.name}
+      .span2.competitor.draw
+        draw
+      .span2.competitor
+        #{match.competitor_2.name}
+      .pull-right
+        = number_field_tag("match[#{match.id}]", match.probability_tip_of_user(current_user), min: 1, max: 99, step: 1, class: 'probability_input')
+      %br
+      .span6.slider
+  = submit_tag("Save tips", class: "btn")
+
+
