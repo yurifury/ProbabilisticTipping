@@ -30,15 +30,17 @@ class RoundsController < ApplicationController
   end
 
   def results
-    params[:match].each do |match_id, outcome|
-      match = Match.find(match_id)
-      result = match.build_result(winner: outcome)
-      result.save or render :text => result.inspect
-    end
     @competition = Competition.find(params[:competition_id])
     @round = @competition.rounds.find(params[:round_id])
-    @round.results_entered = true
-    @round.save
+    unless params[:match].nil?
+      params[:match].each do |match_id, outcome|
+        match = Match.find(match_id)
+        result = match.build_result(winner: outcome)
+        result.save or render :text => result.inspect
+      end
+      @round.results_entered = true
+      @round.save
+    end
     render "show"
   end
 

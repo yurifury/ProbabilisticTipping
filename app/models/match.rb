@@ -7,6 +7,9 @@ class Match < ActiveRecord::Base
 
   has_one :result
 
+  has_many :tips
+  has_many :tippers, through: :tips, source: :user
+
   validate :competitors_cant_play_themselves
 
   validates :competitor_1_id, presence: true

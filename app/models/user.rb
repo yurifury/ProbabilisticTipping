@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   has_many :competitor_sets, foreign_key: 'owner_id', class_name: 'CompetitorSet'
 
+  has_many :tips
+  has_many :matches, through: :tips
+
   before_save { |user| user.email = email.downcase }
 
   validates :name, presence: true, uniqueness: true

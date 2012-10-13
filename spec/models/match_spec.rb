@@ -12,6 +12,8 @@ describe Match do
   it { should respond_to(:competitor_2) }
   it { should respond_to(:round) }
   it { should respond_to(:competition) }
+  it { should respond_to(:tips) }
+  it { should respond_to(:tippers) }
   its(:round) { should == round }
   it { should be_valid }
   describe "with the same competitor vsing themselves" do
