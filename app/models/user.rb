@@ -42,4 +42,36 @@ class User < ActiveRecord::Base
   def has_tips_for?(round)
     round.tipped?(self)
   end
+
+  def participant_scores
+    score = 0
+    participating_competitions.each do |competition|
+      competition.rounds.each do |round|
+        score += round.score_for(self)
+      end
+    end
+    score.round(2)
+  end
+
+  def t
+    tips.count
+  end
+
+  def w
+    w_tips = []
+    tips.each do |tip|
+      unless tip.match.result.nil?
+        if (tip.probability.between?(1,49) && tip.match.result.winner == "1") ||
+           (tip.probability.between?(51, 99) && tip.match.result.winner == "2") ||
+           (tip.probability == 50 && tip.match.result.winner == "draw")
+         w_tips << tip
+       end
+     end
+   end
+   w_tips.count
+  end
+
+  def d
+    tips.where(:probability => 50).count
+  end
 end

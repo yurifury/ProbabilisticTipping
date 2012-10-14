@@ -14,6 +14,7 @@ ProbabilisticTipping::Application.routes.draw do
     member do
       get 'participate_in'
       get 'unparticipate_in'
+      get 'close'
     end
     resources :rounds do
       post 'results'

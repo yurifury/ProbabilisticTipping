@@ -19,6 +19,7 @@ class Tip < ActiveRecord::Base
   end
 
   def calc_score
+    return 0 if match.result.nil?
     p = probability.to_f / 100
     result = match.result.winner
     if result == "1"

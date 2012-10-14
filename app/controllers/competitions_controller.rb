@@ -1,7 +1,7 @@
 class CompetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :participate_in, :unparticipate_in, :show]
-  before_filter :find_competition, only: [:show, :edit, :update, :participate_in, :unparticipate_in]
-  before_filter :check_owner, only: [:edit, :update]
+  before_filter :authorize, only: [:new, :create, :participate_in, :unparticipate_in, :show, :close]
+  before_filter :find_competition, only: [:show, :edit, :update, :participate_in, :unparticipate_in, :close]
+  before_filter :check_owner, only: [:edit, :update, :close]
 
   def new
     @competition = current_user.owned_competitions.new
@@ -44,6 +44,13 @@ class CompetitionsController < ApplicationController
     current_user.unparticipate_in @competition
     redirect_to @competition
   end
+
+  def close
+    @competition.finished = true
+    @competition.save
+    redirect_to @competition, notice: "Competition closed."
+  end
+
 
   private
     def find_competition

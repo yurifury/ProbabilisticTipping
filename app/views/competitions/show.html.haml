@@ -7,18 +7,23 @@
     - if @competition.finished?
       .alert.alert-info This competition has finished!
 
-    - if current_user?(@competition.owner)
+    - if current_user?(@competition.owner) && !@competition.finished?
       = link_to "Edit competitition", edit_competition_path(@competition), class: "btn"
-      = link_to "Create round", new_competition_round_path(@competition), class: "btn"
+      = link_to "Create round", new_competition_round_path(@competition), class: "btn btn-primary"
+      = link_to "Close competition", close_competition_path(@competition), class: "btn btn-danger", confirm: "Are you sure you want to close this competition?"
 
-    - if current_user.participating_in?(@competition)
-      = link_to "Stop participating", unparticipate_in_competition_path(@competition), class: "btn"
+    - unless @competition.finished?
+      - if current_user.participating_in?(@competition)
+        = link_to "Stop participating", unparticipate_in_competition_path(@competition), class: "btn"
+      - else
+        = link_to "Participate", participate_in_competition_path(@competition), class: "btn"
+
+    = link_to "View Competitor Set", competitor_set_path(@competition.competitor_set), class: "btn"
+
+    - if @competition.finished?
+      %h2 Final Results
     - else
-      = link_to "Participate", participate_in_competition_path(@competition), class: "btn"
-
-    = link_to "View Competitor Set", competitor_set_path(@competition.competitor_set)
-
-    %h2 Cumulative Tips
+      %h2 Cumulative Results
     %ul.unstyled
       - @competition.participant_scores.each do |result|
         %li
