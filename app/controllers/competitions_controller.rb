@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :participate_in, :unparticipate_in]
+  before_filter :authorize, only: [:new, :create, :participate_in, :unparticipate_in, :show]
   before_filter :find_competition, only: [:show, :edit, :update, :participate_in, :unparticipate_in]
   before_filter :check_owner, only: [:edit, :update]
 

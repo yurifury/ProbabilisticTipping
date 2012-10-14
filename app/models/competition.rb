@@ -17,6 +17,19 @@ class Competition < ActiveRecord::Base
 
   after_create :participate_owner
 
+  Result = Struct.new(:participant, :score)
+  def participant_scores
+    r = []
+    participants.each do |participant|
+      score = 0
+      rounds.each do |round|
+        score += round.score_for(participant).round(2)
+      end
+      r << Result.new(participant, score)
+    end
+    r.sort {|x, y| y.score <=> x.score}
+  end
+
   private
     def participate_owner
       participants << owner

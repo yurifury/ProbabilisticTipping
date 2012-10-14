@@ -11,12 +11,18 @@
       = link_to "Edit competitition", edit_competition_path(@competition), class: "btn"
       = link_to "Create round", new_competition_round_path(@competition), class: "btn"
 
-    - if current_user.participating_in? @competition
+    - if current_user.participating_in?(@competition)
       = link_to "Stop participating", unparticipate_in_competition_path(@competition), class: "btn"
     - else
       = link_to "Participate", participate_in_competition_path(@competition), class: "btn"
 
     = link_to "View Competitor Set", competitor_set_path(@competition.competitor_set)
+
+    %h2 Cumulative Tips
+    %ul.unstyled
+      - @competition.participant_scores.each do |result|
+        %li
+          #{result.participant.name}: #{result.score}
 
     %h2 Rounds
     %ul.unstyled
