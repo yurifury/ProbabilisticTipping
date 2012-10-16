@@ -26,10 +26,12 @@ class Tip < ActiveRecord::Base
       1 + Math.log2(1 - p)
     elsif result == "2"
       1 + Math.log2(p)
+    elsif result == "draw"
+      win = 1 + Math.log2(p)
+      lose = 1 + Math.log2(1 - p)
+      (win + lose) / 2
     elsif probability == 50
       0
-    elsif result == "draw"
-      1 + 1/2*Math.log2(p*(1-p))
     end
   end
 end
