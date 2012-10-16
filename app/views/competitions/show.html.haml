@@ -27,7 +27,8 @@
     %ul.unstyled
       - @competition.participant_scores.each do |result|
         %li
-          #{result.participant.name}: #{result.score}
+          = link_to result.participant.name, result.participant
+          | #{result.score.round(2)}
 
     %h2 Rounds
     %ul.unstyled

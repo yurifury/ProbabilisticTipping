@@ -12,11 +12,12 @@
       = link_to "Put in results", edit_competition_round_path(@competition, @round), class: "btn"
 
 %h2 Tipping results
-%ul
+%ul.unstyled
 - if @round.results_entered
   - @round.participant_scores.each do |result|
     %li
-      #{result.participant.name}: #{result.score}
+      = link_to result.participant.name, result.participant
+      | #{result.score.round(2)}
 
 
 - if @round.open?
