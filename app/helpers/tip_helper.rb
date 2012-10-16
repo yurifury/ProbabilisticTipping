@@ -1,6 +1,6 @@
 module TipHelper
   def explain(tip)
-    name = tip.user.name
+    name = link_to tip.user.name, tip.user
     rest = case tip.probability
     when 50 
       "a draw"
@@ -9,6 +9,6 @@ module TipHelper
     when 51..99
       "#{tip.probability}% for #{tip.match.competitor_2.name} to win"
     end
-    "#{name} tipped #{rest}"
+    name + " tipped #{rest}"
   end
 end

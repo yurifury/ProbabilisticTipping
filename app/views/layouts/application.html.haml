@@ -24,7 +24,7 @@
             %ul.nav.pull-right
               %li= link_to "Competitions", competitions_path
               - if current_user
-                %li= link_to "Logged in as #{current_user.name} at #{current_user.email}", current_user
+                %li= link_to "Logged in as #{current_user.name}", current_user
                 %li= link_to "Log Out", logout_path
               - else
                 %li= link_to "Sign Up", signup_path
