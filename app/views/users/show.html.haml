@@ -16,5 +16,7 @@ T-W-D: #{@user.t}-#{@user.w}-#{@user.d}
 %h2 Participating competitions
 %ul
   - for comp in @user.participating_competitions
-    %li= link_to comp.name, comp
+    %li
+      = link_to comp.name, comp
+      | Score: #{comp.score_for(@user)}
 

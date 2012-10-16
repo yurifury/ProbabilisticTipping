@@ -30,6 +30,14 @@ class Competition < ActiveRecord::Base
     r.sort {|x, y| y.score <=> x.score}
   end
 
+  def score_for(user)
+    score = 0
+    rounds.each do |round|
+      score += round.score_for(user)
+    end
+    score.round(2)
+  end
+
   private
     def participate_owner
       participants << owner

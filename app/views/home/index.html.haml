@@ -2,3 +2,17 @@
   %h1 Welcome!
 
 %p This a probabilistic tipping competition for Yuri Feldman's 3rd year Computer Science project. Have fun!
+
+%h2
+  List of Competitions
+  %small= link_to "Create a new one", new_competition_path
+%ul.unstyled
+  - Competition.all.each do |comp|
+    %li= link_to comp.name, comp
+
+%h2
+  List of Competitor Sets
+  %small= link_to "Create a new one", new_competitor_set_path
+%ul.unstyled
+  - CompetitorSet.all.each do |comp|
+    %li= link_to comp.name, comp
