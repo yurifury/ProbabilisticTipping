@@ -3,10 +3,8 @@
     #{@user.name}
     %small #{@user.email}
 
-%h2 Cumulative Score
-= @user.participant_scores
-%br
-T-W-D: #{@user.t}-#{@user.w}-#{@user.d}
+%h2 Cumulative Score: #{@user.participant_scores}
+Tips-Wins-Draws: #{@user.t}-#{@user.w}-#{@user.d}
 
 %h2 Owned competitions
 %ul
