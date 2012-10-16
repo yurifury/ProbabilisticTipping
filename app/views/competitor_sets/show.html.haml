@@ -6,7 +6,12 @@
   - if current_user?(@cset.owner)
     = link_to "Edit Competitor Set", edit_competitor_set_path(@cset), class: "btn"
 
+%h2 Competitions using this set
+%ul
+  - Competition.where(competitor_set_id: @cset.id).each do |comp|
+    %li= link_to comp.name, comp
 
+%h2 Competitors
 %ul
   - @cset.competitors.each do |competitor|
     %li= competitor.name
