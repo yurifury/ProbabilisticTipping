@@ -21,9 +21,9 @@
       .pull-right
         = number_field_tag("match[#{match.id}]", match.probability_tip_of_user(current_user), min: 1, max: 99, step: 1, class: 'probability_input')
       .w-d-l.pull-right
-        .win 213124
-        .draw afsa as 
-        .lose asf saf
+        .win
+        .draw
+        .lose
       %br
       .span6.slider
   = submit_tag("Save tips", class: "btn")

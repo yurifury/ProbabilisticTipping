@@ -10,9 +10,9 @@ $ ->
   update_values = (p, el) ->
     p = p / 100
     container = $($(el).parent().find('.w-d-l')[0])
-    $(container.find('.win')[0]).text fix(1 + Math.log(p) / Math.LN2) + " if correct"
-    $(container.find('.draw')[0]).text fix(1 + 0.5 * Math.log(p * (1 - p)) / Math.LN2) + " if a draw"
-    $(container.find('.lose')[0]).text fix(1 + Math.log(1 - p) / Math.LN2) + " if wrong"
+    $(container.find('.win')[0]).text(fix(1 + Math.log(p) / Math.LN2) + " if correct")
+    $(container.find('.draw')[0]).text(fix(1 + 0.5 * Math.log(p * (1 - p)) / Math.LN2) + " if a draw")
+    $(container.find('.lose')[0]).text(fix(1 + Math.log(1 - p) / Math.LN2) + " if wrong")
 
   $('.slider').slider
     min: 1
