@@ -30,6 +30,7 @@ group :test do
   gem 'timecop'
   gem 'pry'
 end
+gem 'turbolinks'
 
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
